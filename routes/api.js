@@ -62,4 +62,27 @@ router.get('/contact/:name', (req, res) => {
         }
     });
 });
+
+router.put('/contact/:id', (req, res) => {
+    let id = req.params.id;
+    let updatedContact = req.body;
+
+    Contact.updateContact(id, updatedContact, (err, contact) => {
+        if (err) {
+            res.status(400);
+            res.header({ Accept: "application/json" });
+            res.json({ success: false, msg: err });
+        } else {
+            if (contact) {
+                res.status(200);
+                res.header({ Accept: "application/json" });
+                res.json({ success: true, contact: contact });
+            } else {
+                res.status(404);
+                res.header({ Accept: "application/json" });
+                res.json({ success: true, msg: "Contact not found!" });
+            }
+        }
+    });
+});
 module.exports = router;
