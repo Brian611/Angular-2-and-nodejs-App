@@ -26,3 +26,8 @@ module.exports.getAllContacts = (callback) => {
 module.exports.addContact = (newContact, callback) => {
     newContact.save(callback);
 };
+
+module.exports.getContactByName = (name, callback) => {
+    query = { name: name };
+    Contact.find(query, callback);
+};

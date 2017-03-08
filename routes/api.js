@@ -40,4 +40,26 @@ router.post('/contact', (req, res) => {
     });
 });
 
+router.get('/contact/:name', (req, res) => {
+    let bname = req.params.name;
+
+    Contact.getContactByName(bname, (err, contact) => {
+        if (err) {
+            res.status(400);
+            res.header({ Accept: "application/json" });
+            res.json({ success: false, msg: err });
+        } else {
+
+            if (contact.length == 0) {
+                res.status(404);
+                res.header({ Accept: "application/json" });
+                res.json({ success: false, msg: "Contact not found!" });
+            } else {
+                res.status(200);
+                res.header({ Accept: "application/json" });
+                res.json({ success: true, contact: contact });
+            }
+        }
+    });
+});
 module.exports = router;
