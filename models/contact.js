@@ -35,3 +35,7 @@ module.exports.getContactByName = (name, callback) => {
 module.exports.updateContact = (id, updatedContact, callback) => {
     Contact.findByIdAndUpdate(id, { $set: updatedContact }, { upsert: true, new: true }, callback);
 };
+
+module.exports.deleteContact = (id, callback) => {
+    Contact.findByIdAndRemove(id, callback);
+};
