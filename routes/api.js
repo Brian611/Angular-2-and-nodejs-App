@@ -89,7 +89,7 @@ router.put('/contact/:id', (req, res) => {
 router.delete('/contact/:id', (req, res) => {
     let id = req.params.id;
 
-    Contact.updateContact(id, (err, contact) => {
+    Contact.deleteContact(id, (err, contact) => {
         if (err) {
             res.status(400);
             res.header({ Accept: "application/json" });
