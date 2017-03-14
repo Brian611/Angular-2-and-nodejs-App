@@ -85,4 +85,26 @@ router.put('/contact/:id', (req, res) => {
         }
     });
 });
+
+router.delete('/contact/:id', (req, res) => {
+    let id = req.params.id;
+
+    Contact.updateContact(id, (err, contact) => {
+        if (err) {
+            res.status(400);
+            res.header({ Accept: "application/json" });
+            res.json({ success: false, msg: err });
+        } else {
+            if (contact) {
+                res.status(200);
+                res.header({ Accept: "application/json" });
+                res.json({ success: true, msg: "Contact deleted successfully" });
+            } else {
+                res.status(404);
+                res.header({ Accept: "application/json" });
+                res.json({ success: true, msg: "Contact not found!" });
+            }
+        }
+    });
+});
 module.exports = router;
