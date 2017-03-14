@@ -33,6 +33,5 @@ module.exports.getContactByName = (name, callback) => {
 };
 
 module.exports.updateContact = (id, updatedContact, callback) => {
-    query = { _id: mongoose.Types.ObjectId(id) };
-    Contact.findByIdAndUpdate(query, { $set: updatedContact }, { upsert: true, new: true }, callback);
+    Contact.findByIdAndUpdate(id, { $set: updatedContact }, { upsert: true, new: true }, callback);
 };
