@@ -14,6 +14,7 @@
     "url": "https://github.com/Brian611/Angular-2-and-nodejs-App.git"
   },
   "dependencies": {
+    "angular2-flash-messages": "^1.0.5",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
