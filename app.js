@@ -9,6 +9,8 @@ const morgan = require('morgan')
 const config = require("./config/database");
 const index = require("./routes/index");
 const api = require("./routes/api");
+const user = require("./routes/user");
+
 const port = 3000;
 
 mongoose.connect(config.database);
@@ -32,6 +34,7 @@ app.use(cors());
 //routes
 app.use('/', index);
 app.use('/api', api);
+app.use('/api/users', user);
 
 app.listen(port, "localhost", (error) => {
     if (error) {
