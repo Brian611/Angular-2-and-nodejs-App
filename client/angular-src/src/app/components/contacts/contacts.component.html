@@ -1,3 +1,47 @@
-<p>
-  contacts works!
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <form [formGroup]="contactForm" (submit)="addContact($event)">
+      <div class="form-group">
+        <label for="name">Name :</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname :</label>
+        <input type="text" class="form-control" formControlName="surname" placeholder="Surname">
+      </div>
+      <div class="form-group">
+        <label for="cellNo">Cell No.</label>
+        <input type="text" class="form-control" formControlName="cellNo" placeholder="Cell No">
+      </div>
+      <div class="form-group">
+        <input type="submit" />
+        <input type="reset" />
+      </div>
+    </form>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name </th>
+          <th>Surname </th>
+          <th>Cell No </th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <th>{{contact.name}}</th>
+          <td>{{contact.surname}}</td>
+          <td>{{contact.cellNo}}</td>
+          <td><i class="fa fa-pencil" aria-hidden="true" (click)="editContact(elem)" [id]="contact" #elem></i>
+          </td>
+          <td><i class="fa fa-trash" (click)="deleteContact()" aria-hidden="true"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

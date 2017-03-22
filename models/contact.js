@@ -13,7 +13,8 @@ const contactSchema = new Schema({
     },
     cellNo: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     }
 });
 

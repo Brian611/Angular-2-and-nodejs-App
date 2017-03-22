@@ -12,7 +12,7 @@ router.get("/contacts", (req, res) => {
             if (contacts) {
                 res.status(200);
                 res.header({ Accept: "application/json" });
-                res.json({ success: true, contacts: contacts });
+                res.json(contacts);
             } else {
                 res.status(404);
                 res.json({ success: false, msg: "Error : Contacts unavailable" });
@@ -57,7 +57,7 @@ router.get('/contact/:name', (req, res) => {
             } else {
                 res.status(200);
                 res.header({ Accept: "application/json" });
-                res.json({ success: true, contact: contact });
+                res.json(contact);
             }
         }
     });
