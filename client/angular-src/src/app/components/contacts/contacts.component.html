@@ -35,9 +35,9 @@
           <th>{{contact.name}}</th>
           <td>{{contact.surname}}</td>
           <td>{{contact.cellNo}}</td>
-          <td><i class="fa fa-pencil" aria-hidden="true" (click)="editContact(elem)" [id]="contact" #elem></i>
+          <td><i class="fa fa-pencil" aria-hidden="true" (click)="editContact(elem.id)" [id]="contact._id" #elem></i>
           </td>
-          <td><i class="fa fa-trash" (click)="deleteContact()" aria-hidden="true"></i>
+          <td><i class="fa fa-trash" aria-hidden="true" (click)="deleteContact(elem.id)" [id]="contact._id" #elem></i>
           </td>
         </tr>
       </tbody>

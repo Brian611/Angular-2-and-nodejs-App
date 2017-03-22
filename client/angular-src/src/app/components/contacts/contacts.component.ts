@@ -45,4 +45,8 @@ export class ContactsComponent implements OnInit {
   editContact(id) {
     console.log(id);
   }
+
+  deleteContact(id) {
+    console.log(id);
+  }
 }
