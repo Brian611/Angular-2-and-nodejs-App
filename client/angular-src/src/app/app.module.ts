@@ -15,6 +15,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "user", component: UsersComponent },
   { path: "contacts", component: ContactsComponent },
+  { path: "editContact", component: EditContactComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     ContactsComponent,
     UsersComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule,

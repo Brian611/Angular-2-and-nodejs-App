@@ -24,6 +24,10 @@ module.exports.getAllContacts = (callback) => {
     query = {};
     Contact.find(query, callback);
 };
+module.exports.getContactById = (id, callback) => {
+    query = { _id: mongoose.Types.ObjectId(id) };
+    Contact.findOne(query, callback);
+}
 module.exports.addContact = (newContact, callback) => {
     newContact.save(callback);
 };

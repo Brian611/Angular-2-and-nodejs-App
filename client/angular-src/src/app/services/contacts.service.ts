@@ -25,6 +25,12 @@ export class ContactsService {
             .catch(this.handleErrors);
     }
 
+    getContactById(id) {
+        return this.http.get('http://localhost:3000/api/contact/' + id)
+            .map((resp: Response) => resp.json())
+            .catch(this.handleErrors);
+    }
+
     private handleErrors(error: Response) {
         let msg = `Status Code : ${error.status} - Error : ${error.json().msg.errmsg} `;
         return Observable.throw(msg);

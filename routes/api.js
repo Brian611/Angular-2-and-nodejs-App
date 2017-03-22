@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Contact = require("../models/contact");
+const _ = require("lodash");
 
 router.get("/contacts", (req, res) => {
     Contact.getAllContacts((error, contacts) => {
@@ -21,7 +22,27 @@ router.get("/contacts", (req, res) => {
         }
     });
 });
+router.get('/contact/:id', (req, res) => {
+    let id = req.params.id;
 
+    Contact.getContactById(id, (err, contact) => {
+        console.log(contact)
+        if (err) {
+            res.status(400);
+            res.header({ Accept: "application/json" });
+            res.json({ success: false, msg: err.errmsg });
+        } else {
+            if (_.isEmpty(contact)) {
+                res.status(404);
+                res.header({ Accept: "application/json" });
+                res.json({ success: false, msg: "Contact not found!" });
+            } else {
+                res.status(200);
+                res.json({ success: true, contact: contact });
+            }
+        }
+    });
+});
 router.post('/contact', (req, res) => {
     let newContact = Contact({
         name: req.body.name,
@@ -50,7 +71,7 @@ router.get('/contact/:name', (req, res) => {
             res.json({ success: false, msg: err });
         } else {
 
-            if (contact.length == 0) {
+            if (!_.isEmpty(contact)) {
                 res.status(404);
                 res.header({ Accept: "application/json" });
                 res.json({ success: false, msg: "Contact not found!" });
@@ -62,6 +83,7 @@ router.get('/contact/:name', (req, res) => {
         }
     });
 });
+
 
 router.put('/contact/:id', (req, res) => {
     let id = req.params.id;
@@ -76,11 +98,11 @@ router.put('/contact/:id', (req, res) => {
             if (contact) {
                 res.status(200);
                 res.header({ Accept: "application/json" });
-                res.json({ success: true, contact: contact });
+                res.json(contact);
             } else {
                 res.status(404);
                 res.header({ Accept: "application/json" });
-                res.json({ success: true, msg: "Contact not found!" });
+                res.json({ success: false, msg: "Contact not found!" });
             }
         }
     });
